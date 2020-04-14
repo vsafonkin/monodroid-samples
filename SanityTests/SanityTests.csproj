@@ -17,7 +17,6 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -87,8 +86,8 @@
     </BuildDependsOn>
   </PropertyGroup>
   <Target Name="BuildNativeLibs" Inputs="jni\foo.c;jni\bar.c;jni\Android.mk" Outputs="@(AndroidNativeLibrary)">
-    <Error Text="Could not locate Android NDK. TEST $(_AndroidNdkDirectory)" Condition="!Exists ('$(ANDROID_NDK_HOME)/ndk-build')" />
-    <Exec Command="&quot;$(ANDROID_NDK_HOME)/ndk-build&quot;" />
+    <Error Text="Could not locate Android NDK." Condition="!Exists ('$(_AndroidNdkDirectory)/ndk-build')" />
+    <Exec Command="&quot;$(_AndroidNdkDirectory)/ndk-build&quot;" />
   </Target>
   <Target Name="BuildNativeJars" Inputs="Adder.java" Outputs="$(OutputPath)\custom.jar">
     <MakeDir Directories="$(OutputPath)\classes" />
